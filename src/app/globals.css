@@ -42,7 +42,7 @@
   animation: float 3s ease-in-out infinite;
 }
 
-/* Animaciones del jardín */
+/* Garden animations */
 @keyframes sway {
   0%, 100% {
     transform: rotate(0deg);
@@ -52,12 +52,14 @@
   }
 }
 
-@keyframes sway-strong {
-  0%, 100% {
-    transform: rotate(-8deg);
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  50% {
-    transform: rotate(8deg);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -83,19 +85,19 @@
   }
 }
 
-.animate-sway {
+.flower-appear {
+  animation: appear 1s ease-out forwards;
+}
+
+.flower-sway {
   animation: sway 3s ease-in-out infinite;
 }
 
-.animate-sway-strong {
-  animation: sway-strong 2s ease-in-out infinite;
-}
-
-.animate-grow {
+.stem-grow {
   animation: grow 2s ease-out forwards;
 }
 
-.animate-bloom {
+.flower-bloom {
   animation: bloom 1s ease-out forwards;
   animation-delay: 1s;
 }
@@ -106,19 +108,6 @@
 
 .flower-container:hover {
   z-index: 10;
-}
-
-.flower-container:hover::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 5px;
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  filter: blur(2px);
 }
 
 /* Heart animation for hero section */
