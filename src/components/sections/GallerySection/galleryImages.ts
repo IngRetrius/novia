@@ -1,8 +1,8 @@
 export const galleryItems: string[] = [
   "/images/1.jpeg",
-  "/images/2.jpg",
+  "/images/2.jpeg",
   "/images/b7a7aca2-343a-466e-8583-bfcedb04d669.jpeg",
-  "/images/e30ad95f-c8cf-4500-b0e1-4581d154f175.jpg",
+  "/images/e30ad95f-c8cf-4500-b0e1-4581d154f175.jpeg",
   "/images/img_0272.jpeg",
   "/images/img_0376.jpeg",
   "/images/img_0620.jpeg",
