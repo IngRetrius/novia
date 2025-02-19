@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image"; // Importamos Image de Next.js
 import Modal from "../../ui/Modal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -15,7 +16,7 @@ export default function Gallery() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-purple-100 p-6">
       <h2 className="text-3xl font-bold text-purple-700 mb-4">Gallery</h2>
       <p className="text-purple-600 text-center max-w-2xl mx-auto mb-8 italic">
-        "These are my favorite photos among thousands, and I'm certain we will create countless more beautiful memories together in the near future. I love you Irem."
+        &quot;These are my favorite photos among thousands, and I&apos;m certain we will create countless more beautiful memories together in the near future. I love you Irem.&quot;
       </p>
       
       {/* Contenedor principal del Swiper */}
@@ -40,9 +41,11 @@ export default function Gallery() {
                   controls
                 />
               ) : (
-                <img
+                <Image
                   src={src}
                   alt={`Gallery item ${index + 1}`}
+                  width={1920} // Ajusta según el tamaño real de las imágenes
+                  height={1080}
                   className="w-full h-full object-contain cursor-pointer"
                   onClick={() => {
                     setSelectedMedia(src);
@@ -66,9 +69,11 @@ export default function Gallery() {
                 className="w-full h-full object-contain rounded-lg"
               />
             ) : (
-              <img
+              <Image
                 src={selectedMedia}
                 alt="Selected"
+                width={1920}
+                height={1080}
                 className="w-full h-full object-contain rounded-lg"
               />
             )}

@@ -13,9 +13,9 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     rules: {
-      "jsx-a11y/alt-text": "off", // Deshabilita la regla de "alt" en imágenes
+      "jsx-a11y/alt-text": "warn", // Cambiado a "warn" en lugar de deshabilitar completamente (buena práctica de accesibilidad)
       "react/no-unescaped-entities": "off", // Permite comillas sin escapar en JSX
-      "@next/next/no-img-element": "off", // Permite usar <img> en lugar de <Image />
+      "@next/next/no-img-element": "error", // Se mantiene en "error" para fomentar el uso de <Image /> de Next.js
     },
   },
 ];
