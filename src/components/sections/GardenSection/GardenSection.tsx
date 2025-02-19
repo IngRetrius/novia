@@ -40,12 +40,12 @@ const GardenSection = () => {
   };
 
   const irisPositions = generateFlowerPositions(10);
-  const tulipPositions = generateFlowerPositions(8);
-  const lavenderPositions = generateFlowerPositions(12);
-  const lilyPositions = generateFlowerPositions(8);
-  const daisyPositions = generateFlowerPositions(10);
+  const tulipPositions = generateFlowerPositions(10);
+  const lavenderPositions = generateFlowerPositions(10);
+  const lilyPositions = generateFlowerPositions(10);
+  const daisyPositions = generateFlowerPositions(12);
   const rosePositions = generateFlowerPositions(8);
-  const sunflowerPositions = generateFlowerPositions(6);
+  const sunflowerPositions = generateFlowerPositions(20);
 
   const allPositions = [
     ...irisPositions.map(pos => ({ ...pos, type: 'iris' })),
