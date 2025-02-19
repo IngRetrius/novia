@@ -11,10 +11,6 @@ interface FlowerPosition {
   type?: 'iris' | 'tulip' | 'lavender' | 'lily' | 'daisy' | 'rose' | 'sunflower';
 }
 
-interface Position {
-  x: number;
-  y: number;
-}
 
 const GardenSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
