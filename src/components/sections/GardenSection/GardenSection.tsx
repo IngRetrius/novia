@@ -1,6 +1,8 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { Iris, Tulip, Lavender, Lily, Daisy, Rose, Sunflower } from './Flowers';
-import { Heart } from 'lucide-react';
+import SpanishEnglishDictionary from './SpanishEnglishDictionary';
 
 interface FlowerPosition {
   x: number;
@@ -11,53 +13,13 @@ interface FlowerPosition {
   type?: 'iris' | 'tulip' | 'lavender' | 'lily' | 'daisy' | 'rose' | 'sunflower';
 }
 
-
 const GardenSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [showQuestion, setShowQuestion] = useState(false);
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
-
-  const noResponsePhrases = [
-    "Are you sure? Think again...",
-    "Please, think about it one more time 🥺",
-    "But I love you so much! Try again ❤️",
-    "Don't break my heart... Reconsider? 💔",
-    "Remember all our moments together... Sure about that no?",
-    "Come on! Give us another chance 🌹",
-    "Really? You know you want to say yes 😊",
-    "Just one more chance, I promise it'll be worth it ✨",
-    "My heart says you'll change your mind ❤️",
-    "You're making me sad... Sure about that? 🥺",
-    "I'll keep asking until you say yes! 💝",
-    "Remember our first kiss? Try again 💋",
-    "Look at all these flowers... Sure about no? 🌸",
-    "I can't take no for an answer 😅",
-    "Let's make new memories together... Reconsider? 📸"
-  ];
+  const [showDictionary, setShowDictionary] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
-    const timer = setTimeout(() => {
-      setShowQuestion(true);
-    }, 3000);
-
-    return () => clearTimeout(timer);
   }, []);
-
-  const handleYes = () => {
-    setShowQuestion(false);
-    setShowConfirmation(true);
-  };
-
-  const handleNo = () => {
-    let newIndex;
-    do {
-      newIndex = Math.floor(Math.random() * noResponsePhrases.length);
-    } while (newIndex === currentPhraseIndex);
-    
-    setCurrentPhraseIndex(newIndex);
-  };
 
   const generateFlowerPositions = (count: number): FlowerPosition[] => {
     const positions: FlowerPosition[] = [];
@@ -136,102 +98,48 @@ const GardenSection: React.FC = () => {
   return (
     <div className="min-h-screen relative overflow-hidden bg-[#FDF4FF]">
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <h2 className="text-4xl font-bold text-purple-800 text-center mb-8">
-          Our Garden
+        <h2 className="text-4xl font-bold text-purple-800 text-center mb-4">
+          Jardín Virtual
         </h2>
-        <p className="text-purple-600 text-center mb-12 max-w-2xl mx-auto text-lg italic">
-          "Just like these flowers, my reasons to love you that you saw before are infinite and forever."
+        <p className="text-purple-600 text-center mb-8 max-w-2xl mx-auto text-lg italic">
+          "Un jardín de flores para acompañar tu aprendizaje de español."
         </p>
         
-        <div 
-          className={`relative h-[1000px] transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-        >
-          {allPositions.map((pos, i) => (
-            <div
-              key={`flower-${i}`}
-              className="absolute transition-all duration-700 will-change-transform"
-              style={{
-                left: `${pos.x}%`,
-                top: `${pos.y}%`,
-                transform: `scale(${pos.scale}) rotate(${pos.rotation}deg)`,
-                transformOrigin: 'bottom center',
-              }}
-            >
-              {renderFlower(pos.type, pos.delay)}
-            </div>
-          ))}
-        </div>
-
-        {/* Question Modal */}
-        <div
-          className={`fixed inset-0 flex items-center justify-center transition-opacity duration-500 ${
-            showQuestion ? 'opacity-100 z-50' : 'opacity-0 pointer-events-none'
-          }`}
-        >
-          <div className="bg-white/95 backdrop-blur-sm p-8 rounded-xl shadow-2xl transform transition-all duration-500 scale-110 max-w-md w-full mx-4">
-            <div className="text-center">
-              <Heart 
-                className={`w-16 h-16 text-pink-500 mx-auto mb-4 ${
-                  currentPhraseIndex === 0 ? 'animate-pulse' : 'animate-bounce'
-                }`} 
-              />
-              <h3 className="text-2xl font-bold text-purple-800 mb-6">
-                {currentPhraseIndex === 0 ? "Would you be my girlfriend again?" : noResponsePhrases[currentPhraseIndex]}
-              </h3>
-              <div className="flex justify-center gap-4">
-                <button
-                  onClick={handleYes}
-                  className="px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transform hover:scale-105 transition-all shadow-lg"
-                >
-                  Yes
-                </button>
-                <button
-                  onClick={handleNo}
-                  className="px-8 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transform hover:scale-105 transition-all shadow-lg"
-                >
-                  No
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Confirmation Modal */}
-        <div
-          className={`fixed inset-0 flex items-center justify-center transition-opacity duration-500 ${
-            showConfirmation ? 'opacity-100 z-50' : 'opacity-0 pointer-events-none'
-          }`}
-        >
-          <div 
-            className="bg-white/95 backdrop-blur-sm p-8 rounded-xl shadow-2xl transform transition-all duration-500 scale-110 max-w-md w-full mx-4"
+        <div className="text-center mb-8">
+          <button 
+            onClick={() => setShowDictionary(!showDictionary)}
+            className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
           >
-            <div className="text-center">
-              <div className="relative">
-                <Heart className="w-16 h-16 text-pink-500 mx-auto mb-4 animate-bounce" />
-                <div className="absolute -top-2 -right-2">
-                  <Heart className="w-8 h-8 text-purple-500 animate-ping" />
-                </div>
-              </div>
-              <h3 className="text-2xl font-bold text-purple-800 mb-4">
-                I knew it! 
-              </h3>
-              <p className="text-purple-600 text-lg mb-6">
-                I love you so much ❤️
-              </p>
-              <div className="space-y-4">
-                <p className="text-purple-500 text-sm italic">
-                  "Together, we'll create more beautiful memories than all the flowers in this garden"
-                </p>
-                <button
-                  onClick={() => setShowConfirmation(false)}
-                  className="px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transform hover:scale-105 transition-all shadow-lg"
-                >
-                  I love you too ❤️
-                </button>
-              </div>
-            </div>
-          </div>
+            {showDictionary ? "Ver Jardín" : "Ver Diccionario Español-Inglés"}
+          </button>
         </div>
+        
+        {!showDictionary ? (
+          // Muestra el jardín cuando showDictionary es false
+          <div 
+            className={`relative h-[1000px] transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+          >
+            {allPositions.map((pos, i) => (
+              <div
+                key={`flower-${i}`}
+                className="absolute transition-all duration-700 will-change-transform"
+                style={{
+                  left: `${pos.x}%`,
+                  top: `${pos.y}%`,
+                  transform: `scale(${pos.scale}) rotate(${pos.rotation}deg)`,
+                  transformOrigin: 'bottom center',
+                }}
+              >
+                {renderFlower(pos.type, pos.delay)}
+              </div>
+            ))}
+          </div>
+        ) : (
+          // Muestra el diccionario cuando showDictionary es true
+          <div className="bg-white rounded-lg shadow-lg p-6 max-h-[800px] overflow-auto">
+            <SpanishEnglishDictionary />
+          </div>
+        )}
       </div>
     </div>
   );
