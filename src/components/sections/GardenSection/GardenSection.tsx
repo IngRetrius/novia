@@ -99,10 +99,10 @@ const GardenSection: React.FC = () => {
     <div className="min-h-screen relative overflow-hidden bg-[#FDF4FF]">
       <div className="max-w-7xl mx-auto px-4 py-16">
         <h2 className="text-4xl font-bold text-purple-800 text-center mb-4">
-          Jardín Virtual
+          Virtual Garden
         </h2>
         <p className="text-purple-600 text-center mb-8 max-w-2xl mx-auto text-lg italic">
-          "Un jardín de flores para acompañar tu aprendizaje de español."
+          "A garden of flowers to accompany your Spanish learning journey."
         </p>
         
         <div className="text-center mb-8">
@@ -110,14 +110,14 @@ const GardenSection: React.FC = () => {
             onClick={() => setShowDictionary(!showDictionary)}
             className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
           >
-            {showDictionary ? "Ver Jardín" : "Ver Diccionario Español-Inglés"}
+            {showDictionary ? "View Garden" : "View Dictionary"}
           </button>
         </div>
         
         {!showDictionary ? (
-          // Muestra el jardín cuando showDictionary es false
+          // Show garden when showDictionary is false
           <div 
-            className={`relative h-[1000px] transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+            className={`relative h-[600px] transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
           >
             {allPositions.map((pos, i) => (
               <div
@@ -135,7 +135,7 @@ const GardenSection: React.FC = () => {
             ))}
           </div>
         ) : (
-          // Muestra el diccionario cuando showDictionary es true
+          // Show dictionary when showDictionary is true
           <div className="bg-white rounded-lg shadow-lg p-6 max-h-[800px] overflow-auto">
             <SpanishEnglishDictionary />
           </div>
